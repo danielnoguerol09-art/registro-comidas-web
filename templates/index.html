@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registro de Comidas</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<h1>Registro de Comidas</h1>
+
+<a href="/agregar" class="btn">Agregar nueva comida</a>
+
+<h3>Filtrar</h3>
+
+<form method="GET" action="/">
+    <label>Fecha:</label>
+    <select name="fecha">
+        <option value="">Todas</option>
+        {% for f in fechas %}
+        <option value="{{ f }}" {% if filtro_fecha == f %}selected{% endif %}>{{ f }}</option>
+        {% endfor %}
+    </select>
+
+    <label>Tipo:</label>
+    <select name="tipo">
+        <option value="">Todos</option>
+        <option value="Desayuno" {% if filtro_tipo == "Desayuno" %}selected{% endif %}>Desayuno</option>
+        <option value="Almuerzo" {% if filtro_tipo == "Almuerzo" %}selected{% endif %}>Almuerzo</option>
+        <option value="Merienda" {% if filtro_tipo == "Merienda" %}selected{% endif %}>Merienda</option>
+        <option value="Cena" {% if filtro_tipo == "Cena" %}selected{% endif %}>Cena</option>
+        <option value="Snack" {% if filtro_tipo == "Snack" %}selected{% endif %}>Snack</option>
+    </select>
+
+    <button type="submit">Aplicar</button>
+</form>
+
+<hr>
+
+<h2>Historial</h2>
+
+{% if registros %}
+    {% for r in registros %}
+        <div class="card">
+            <p><strong>Fecha:</strong> {{ r[0] }}</p>
+            <p><strong>Hora:</strong> {{ r[1] }}</p>
+            <p><strong>Tipo:</strong> {{ r[2] }}</p>
+            <p><strong>Descripción:</strong> {{ r[3] }}</p>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>No hay registros.</p>
+{% endif %}
+
+</body>
+</html>

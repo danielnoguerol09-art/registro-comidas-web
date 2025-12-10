@@ -1,0 +1,55 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 30px;
+}
+
+h1 {
+    color: #333;
+}
+
+form label {
+    display: block;
+    margin-top: 12px;
+}
+
+input, select, textarea {
+    width: 250px;
+    padding: 6px;
+    margin-top: 5px;
+}
+
+textarea {
+    width: 350px;
+    height: 80px;
+}
+
+button {
+    margin-top: 15px;
+    padding: 8px 12px;
+    background: #4CAF50;
+    border: none;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #45A049;
+}
+
+.btn {
+    display: inline-block;
+    padding: 8px 12px;
+    background: #2196F3;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+.card {
+    padding: 10px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
