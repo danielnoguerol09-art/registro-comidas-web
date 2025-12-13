@@ -2,64 +2,52 @@
 <html>
 <head>
     <meta charset="UTF-8">
+
+    <!-- HACER QUE SE VEA BIEN EN IPHONE -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Agregar comida</title>
 
     <link rel="stylesheet" href="/static/style.css">
 
-    <!-- Iconos -->
+    <!-- Iconos PWA -->
     <link rel="apple-touch-icon" sizes="180x180" href="/static/icon.png">
     <link rel="icon" type="image/png" href="/static/icon.png">
 
-    <!-- PWA -->
     <link rel="manifest" href="/static/manifest.json">
     <meta name="theme-color" content="#ffffff">
-
-    <!-- Para que funcione en modo app -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-
-    <!-- Service Worker -->
-    <script>
-    if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("/static/sw.js");
-    }
-    </script>
 </head>
 
 <body>
 
-<div class="container">
+<h1>Agregar comida</h1>
 
-    <h1>Agregar comida</h1>
+<form method="POST" action="/agregar">
 
-    <form method="POST">
+    <label>Fecha:</label>
+    <input type="date" name="fecha" value="{{ fecha_actual }}">
 
-        <label>Fecha:</label>
-        <input type="date" name="fecha" required>
+    <label>Hora:</label>
+    <input type="time" name="hora" value="{{ hora_actual }}">
 
-        <label>Hora:</label>
-        <input type="time" name="hora" value="{{ hora_actual }}" required>
+    <label>Tipo:</label>
+    <select name="tipo">
+        <option value="Desayuno">Desayuno</option>
+        <option value="Almuerzo">Almuerzo</option>
+        <option value="Merienda">Merienda</option>
+        <option value="Cena">Cena</option>
+        <option value="Snack">Snack</option>
+    </select>
 
-        <label>Tipo:</label>
-        <select name="tipo" required>
-            <option value="Desayuno">Desayuno</option>
-            <option value="Almuerzo">Almuerzo</option>
-            <option value="Merienda">Merienda</option>
-            <option value="Cena">Cena</option>
-            <option value="Snack">Snack</option>
-        </select>
+    <label>Descripción:</label>
+    <textarea name="descripcion"></textarea>
 
-        <label>Descripción:</label>
-        <textarea name="descripcion" placeholder="Escribe aquí..."></textarea>
+    <button type="submit">Guardar</button>
+</form>
 
-        <button type="submit">Guardar</button>
-    </form>
+<br>
 
-    <a href="/" class="btn">Volver</a>
-
-</div>
+<a href="/" class="btn">Volver</a>
 
 </body>
 </html>
