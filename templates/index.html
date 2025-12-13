@@ -2,8 +2,33 @@
 <html>
 <head>
     <title>Registro de Comidas</title>
+
+    <!-- Estilos -->
     <link rel="stylesheet" href="/static/style.css">
+
+    <!-- Ícono para iPhone (180x180) -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/icon.png">
+
+    <!-- Ícono para navegadores -->
+    <link rel="icon" type="image/png" href="/static/icon.png">
+
+    <!-- PROGRESSIVE WEB APP -->
+    <link rel="manifest" href="/static/manifest.json">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Permitir instalación en iPhone -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+    <!-- Service Worker -->
+    <script>
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("/static/sw.js");
+        }
+    </script>
+
 </head>
+
 <body>
 
 <h1>Registro de Comidas</h1>
