@@ -87,14 +87,17 @@ def agregar():
 
         return redirect("/")
 
-    # -----------------------------
-    # Hora con zona horaria ARG
-    # -----------------------------
+    # === HORA AUTOMÁTICA AJUSTADA A ARGENTINA ===
+    import pytz
+    from datetime import datetime
+
     tz = pytz.timezone("America/Argentina/Buenos_Aires")
-    hora_actual = datetime.now(tz).strftime("%H:%M")
+    hora_argentina = datetime.now(tz).strftime("%H:%M")
+
     print("DEBUG hora_actual:", hora_argentina)
 
-    return render_template("agregar.html", hora_actual=hora_actual)
+    return render_template("agregar.html", hora_actual=hora_argentina)
+
 
 
 if __name__ == "__main__":
