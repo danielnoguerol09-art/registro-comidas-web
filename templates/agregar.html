@@ -1,54 +1,65 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Agregar comida</title>
+
     <link rel="stylesheet" href="/static/style.css">
+
+    <!-- Iconos -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/icon.png">
+    <link rel="icon" type="image/png" href="/static/icon.png">
+
+    <!-- PWA -->
+    <link rel="manifest" href="/static/manifest.json">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Para que funcione en modo app -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+    <!-- Service Worker -->
+    <script>
+    if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("/static/sw.js");
+    }
+    </script>
 </head>
+
 <body>
 
-<h1>Agregar comida</h1>
+<div class="container">
 
-<form method="POST">
+    <h1>Agregar comida</h1>
 
-    <label>Fecha:</label>
-    <input type="date" name="fecha" required>
+    <form method="POST">
 
-    <label>Hora:</label>
-    <select name="hora" required>
-        <!-- Hora automática -->
-        <option value="{{ hora_actual }}">{{ hora_actual }} (ahora)</option>
+        <label>Fecha:</label>
+        <input type="date" name="fecha" required>
 
-        <!-- Listado de horas cada 30 minutos -->
-        {% for h in [
-            "00:00","00:30","01:00","01:30","02:00","02:30",
-            "03:00","03:30","04:00","04:30","05:00","05:30",
-            "06:00","06:30","07:00","07:30","08:00","08:30",
-            "09:00","09:30","10:00","10:30","11:00","11:30",
-            "12:00","12:30","13:00","13:30","14:00","14:30",
-            "15:00","15:30","16:00","16:30","17:00","17:30",
-            "18:00","18:30","19:00","19:30","20:00","20:30",
-            "21:00","21:30","22:00","22:30","23:00","23:30"
-        ] %}
-            <option value="{{ h }}">{{ h }}</option>
-        {% endfor %}
-    </select>
+        <label>Hora:</label>
+        <input type="time" name="hora" value="{{ hora_actual }}" required>
 
-    <label>Tipo:</label>
-    <select name="tipo" required>
-        <option>Desayuno</option>
-        <option>Almuerzo</option>
-        <option>Merienda</option>
-        <option>Cena</option>
-        <option>Snack</option>
-    </select>
+        <label>Tipo:</label>
+        <select name="tipo" required>
+            <option value="Desayuno">Desayuno</option>
+            <option value="Almuerzo">Almuerzo</option>
+            <option value="Merienda">Merienda</option>
+            <option value="Cena">Cena</option>
+            <option value="Snack">Snack</option>
+        </select>
 
-    <label>Descripción:</label>
-    <textarea name="descripcion" required></textarea>
+        <label>Descripción:</label>
+        <textarea name="descripcion" placeholder="Escribe aquí..."></textarea>
 
-    <button type="submit">Guardar</button>
-</form>
+        <button type="submit">Guardar</button>
+    </form>
 
-<a href="/" class="btn">Volver</a>
+    <a href="/" class="btn">Volver</a>
+
+</div>
 
 </body>
 </html>
