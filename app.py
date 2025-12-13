@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect
 import sqlite3
 from datetime import datetime
+import pytz   # <-- AGREGADO PARA MANEJAR ZONA HORARIA
 
 app = Flask(__name__)
 
@@ -86,8 +87,11 @@ def agregar():
 
         return redirect("/")
 
-    # Hora automática generada cuando se abre el formulario
-    hora_actual = datetime.now().strftime("%H:%M")
+    # -----------------------------
+    # Hora con zona horaria ARG
+    # -----------------------------
+    tz = pytz.timezone("America/Argentina/Buenos_Aires")
+    hora_actual = datetime.now(tz).strftime("%H:%M")
 
     return render_template("agregar.html", hora_actual=hora_actual)
 
