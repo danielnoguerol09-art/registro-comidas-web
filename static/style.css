@@ -4,6 +4,13 @@ body {
     margin: 20px;
 }
 
+/* CONTENEDOR GENERAL PARA QUE SE VEA BIEN EN CELULAR */
+.container {
+    max-width: 500px;     /* evita zoom automático en iPhone */
+    margin: 0 auto;
+    padding: 15px;
+}
+
 /* TITULOS */
 h1, h2, h3 {
     color: #333;
@@ -16,11 +23,11 @@ form label {
 }
 
 input, select, textarea {
-    width: 100%;             /* ← ANTES estaba fijo (250px) */
+    width: 100%;             /* antes 250px → ahora 100% */
     max-width: 500px;        /* límite opcional */
     padding: 8px;
     margin-top: 5px;
-    font-size: 16px;         /* ← iPhone agranda si es menos de 16px */
+    font-size: 16px;         /* evita zoom automático de Safari */
 }
 
 /* TEXTAREA */
