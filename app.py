@@ -1,11 +1,11 @@
 from flask import Flask, render_template, request, redirect
 import sqlite3
 from datetime import datetime
-import pytz   # <-- AGREGADO PARA MANEJAR ZONA HORARIA
+import pytz   # Manejo de zona horaria
 
 app = Flask(__name__)
 
-# Crear tabla si no existe (incluye HORA)
+# Crear tabla si no existe
 def init_db():
     conn = sqlite3.connect("comidas_web.db")
     c = conn.cursor()
@@ -40,7 +40,6 @@ def index():
     query = "SELECT fecha, hora, tipo, descripcion FROM comidas"
     params = []
 
-    # Aplicar filtros si existen
     if filtro_fecha or filtro_tipo:
         query += " WHERE"
         if filtro_fecha:
@@ -57,7 +56,7 @@ def index():
     c.execute(query, params)
     registros = c.fetchall()
 
-    # Obtener fechas para el filtro
+    # Fechas disponibles para filtros
     c.execute("SELECT DISTINCT fecha FROM comidas ORDER BY fecha DESC")
     fechas_disponibles = [f[0] for f in c.fetchall()]
 
@@ -74,7 +73,7 @@ def index():
 def agregar():
     if request.method == "POST":
         fecha = request.form["fecha"]
-        hora = request.form["hora"]   # Recibe hora del formulario
+        hora = request.form["hora"]
         tipo = request.form["tipo"]
         descripcion = request.form["descripcion"]
 
@@ -88,16 +87,10 @@ def agregar():
         return redirect("/")
 
     # === HORA AUTOMÁTICA AJUSTADA A ARGENTINA ===
-    import pytz
-    from datetime import datetime
-
     tz = pytz.timezone("America/Argentina/Buenos_Aires")
-    hora_argentina = datetime.now(tz).strftime("%H:%M")
+    hora_actual = datetime.now(tz).strftime("%H:%M")
 
-    print("DEBUG hora_actual:", hora_argentina)
-
-    return render_template("agregar.html", hora_actual=hora_argentina)
-
+    return render_template("agregar.html", hora_actual=hora_actual)
 
 
 if __name__ == "__main__":
